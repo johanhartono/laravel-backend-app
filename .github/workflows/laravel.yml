@@ -27,18 +27,4 @@ jobs:
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: vendor/bin/phpunit
 
-deploy:
-  needs: [test]
-  runs-on: ubuntu-latest
 
-  steps:
-  - name: 'SSH to VPS Deploy Server'
-    uses: appleboy/ssh-action@master
-    with:
-      host: ${{ secrets.HOST }}
-      username: ${{secrets.USERNAME}}
-      password: ${{ secrets.PASSWORD}}
-      port: ${{ secrets.PORT }}
-      script: 
-        cd /var/www/laravel-backend-app
-        ls -lah
