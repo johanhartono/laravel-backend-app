@@ -20,9 +20,11 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
+        // Default Columns from Laravel Fortify
         'name',
         'email',
         'password',
+        //Field/Columns Addition
         'bio',
         'phone',
     ];
@@ -43,7 +45,9 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<string, string>
      */
     protected $casts = [
+        //Field/Columns Addition
         'email_verified_at' => 'datetime',
+        // Default Columns from Laravel Fortify
         'password' => 'hashed',
     ];
 }

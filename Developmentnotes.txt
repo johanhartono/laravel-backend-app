@@ -1,0 +1,36 @@
+Development steps:
+1. get Template that suit dev platform (vue js, react js, laravel etc...)
+2. if dont get then porting/migrating from origin usually(HTML) to dev platform. if possible get free and open source from github
+    community
+3. Install Required component (Laravel Fortify)
+4.
+5. Install Mailpit
+percobaan lokal
+
+percobaan public
+
+6. Deploy to VPS, Hosting, Local, Docker
+
+6. CI/CID using github
+
+Main Important Things
+
+1. variable to pass  syntax {{route('login')}}
+    example:
+         <form method="POST" action="{{route('login')}}" class="needs-validation" novalidate="">
+
+2. @error function syntax
+    @error @enderror
+    example:
+                    <input id="email" type="email"
+                         class="form-control @error('email')
+                            is-invalid
+                        @enderror"
+                             name="email"  tabindex="1" autofocus>
+                        @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+
+3.
