@@ -34,10 +34,13 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill([
+                // Default Columns from Laravel Fortify
                 'name' => $input['name'],
                 'email' => $input['email'],
-                'phone' => $input['phone'],
-                'bio' => $input['bio'],
+
+                //Field/Columns Addition
+                'phone' => $input['phone'], 
+                'bio' => $input['bio'],     
             ])->save();
         }
     }
@@ -52,6 +55,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         $user->forceFill([
             'name' => $input['name'],
             'email' => $input['email'],
+            //Field/Columns Addition
             'email_verified_at' => null,
         ])->save();
 
