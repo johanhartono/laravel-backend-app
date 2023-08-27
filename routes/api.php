@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryCantroller;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UploadController;
+use App\Http\Controllers\Api\OrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,11 +23,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/login',[AuthController::class,'login']);
-Route::post('/register',[AuthController::class,'register']);
-Route::post('/logout',[AuthController::class,'logout'])->middleware('auth:sanctum');
-Route::post('/image/upload',[UploadController::class,'uploadImage']);
-Route::post('/image/upload-multiple',[UploadController::class,'uploadMultipleImage']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+Route::post('/image/upload', [UploadController::class, 'uploadImage'])->middleware('auth:sanctum');
+Route::post('/image/upload-multiple', [UploadController::class, 'uploadMultipleImage'])->middleware('auth:sanctum');
+Route::post('/order', [OrderController::class, 'order'])->middleware('auth:sanctum');
 
-Route::apiResource('categories',CategoryCantroller::class);
-Route::apiResource('products',ProductController::class);
+Route::apiResource('categories', CategoryCantroller::class);
+Route::apiResource('products', ProductController::class);
