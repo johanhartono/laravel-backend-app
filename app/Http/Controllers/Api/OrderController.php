@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Services\Midtrans\CreatePaymentUrlService;
 
 class OrderController extends Controller
 {
@@ -27,6 +28,13 @@ class OrderController extends Controller
             ]);
         }
         // manggil service midtrans untuk dapatkan payment url
+        $midtrans = new CreatePaymentUrlService();
+        $payment_url = $midtrans->getPaymentUrl($order->load('user','orderItems'));
+        //dd('$paymentUrl');
+        $order->update([
+            'payment_url' =>$payment_url,
+        ]);
+
         return response()->json([
             'data'=>$order
         ])   ;
